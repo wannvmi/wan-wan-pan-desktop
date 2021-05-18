@@ -1,17 +1,10 @@
 <template>
   <v-app id="inspire">
-    <v-system-bar app>
-      <v-spacer />
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar>
+    <system-bar />
 
     <v-navigation-drawer
       v-model="drawer"
+      permanent
       app
     >
       <v-list>
@@ -32,10 +25,9 @@
     </v-navigation-drawer>
 
     <v-main>
-      <v-container
-        class="py-8 px-6"
-        fluid
-      >
+      <v-container fluid>
+        阿萨德
+        <div class="demos" />
         <router-view :key="key" />
       </v-container>
     </v-main>
@@ -43,7 +35,12 @@
 </template>
 
 <script>
+import SystemBar from './components/SystemBar'
+
 export default {
+  components: {
+    SystemBar
+  },
   data: () => ({
     cards: ['Today', 'Yesterday'],
     drawer: null,
@@ -61,3 +58,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.v-main {
+  height: calc(100vh - 40px);
+}
+
+.demos {
+  border: 1px solid #3333;
+  width: 20px;
+  height: 3000px;
+}
+</style>
