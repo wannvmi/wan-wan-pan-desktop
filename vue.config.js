@@ -47,5 +47,10 @@ module.exports = {
       .plugin('banner')
       .use(webpack.BannerPlugin, [`pacakge version: ${packageinfo.version}`])
       .end()
+  },
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true
+    }
   }
 }

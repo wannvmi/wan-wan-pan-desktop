@@ -1,37 +1,38 @@
 <template>
-  <v-app id="inspire">
-    <system-bar />
+  <div>
+    <v-app id="inspire">
+      <system-bar />
+      <v-navigation-drawer
+        v-model="drawer"
+        permanent
+        app
+      >
+        <v-list>
+          <v-list-item
+            v-for="[icon, text] in links"
+            :key="icon"
+            link
+          >
+            <v-list-item-icon>
+              <v-icon>{{ icon }}</v-icon>
+            </v-list-item-icon>
 
-    <v-navigation-drawer
-      v-model="drawer"
-      permanent
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="[icon, text] in links"
-          :key="icon"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
-          </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ text }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-main>
-      <v-container fluid>
-        阿萨德
-        <div class="demos" />
-        <router-view :key="key" />
-      </v-container>
-    </v-main>
-  </v-app>
+      <v-main>
+        <v-container fluid>
+          阿萨德
+          <div class="demos" />
+          <router-view :key="key" />
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -62,6 +63,8 @@ export default {
 <style lang="scss" scoped>
 .v-main {
   height: calc(100vh - 40px);
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .demos {
