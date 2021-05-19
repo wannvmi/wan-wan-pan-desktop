@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import SecureLS from 'secure-ls'
 import getters from './getters'
+import setting from '@/settings'
 
 Vue.use(Vuex)
 
@@ -17,9 +20,26 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   return modules
 }, {})
 
+// https://github.com/robinvdvleuten/vuex-persistedstate#encrypted-local-storage
+const ls = new SecureLS({
+  encodingType: 'aes',
+  encryptionSecret: setting.vuexKey,
+  encryptionNamespace: setting.vuexKey
+})
+
 const store = new Vuex.Store({
   modules,
-  getters
+  getters,
+  plugins: [
+    createPersistedState({
+      key: setting.vuexKey,
+      storage: {
+        getItem: (key) => ls.get(key),
+        setItem: (key, value) => ls.set(key, value),
+        removeItem: (key) => ls.remove(key)
+      }
+    })
+  ]
 })
 
 export default store
