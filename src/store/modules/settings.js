@@ -10,7 +10,6 @@ const mutations = {
 
 const actions = {
   changeIsMaxWindow({ commit }, data) {
-    console.log(data)
     commit('SET_IS_MAX_WINDOW', data)
   }
 }

@@ -37,6 +37,16 @@ async function createWindow() {
     // Load the index.html when not in development
     mainWindow.loadURL('app://./index.html')
   }
+
+  mainWindow.on('maximize', (event) => {
+    let isMaximized = mainWindow.isMaximized()
+    event.sender.send('win:isMaximized', isMaximized)
+  })
+
+  mainWindow.on('unmaximize', (event) => {
+    let isMaximized = mainWindow.isMaximized()
+    event.sender.send('win:isMaximized', isMaximized)
+  })
 }
 
 // Quit when all windows are closed.
@@ -93,41 +103,61 @@ if (isDevelopment) {
 //   // find other window to send the event to
 //   console.log('触发了')
 //   event.sender.send('fromMain', data)
+//   event.reply('fromMain', data)
 // })
 
-ipcMain.on('win:minimize', () => {
+// https://www.electronjs.org/docs/api/ipc-main
+ipcMain.on('win:minimize', event => {
   if (mainWindow) {
     mainWindow.minimize()
+
+    event.returnValue = new Error('mainWindow not exist')
+  } else {
+    event.returnValue = new Error('mainWindow not exist')
   }
 })
 
-ipcMain.on('win:maximize', (event) => {
+ipcMain.on('win:maximize', event => {
   if (mainWindow) {
     mainWindow.maximize()
 
     let isMaximized = mainWindow.isMaximized()
-    event.sender.send('win:isMaximized', isMaximized)
+
+    event.returnValue = isMaximized
+  } else {
+    event.returnValue = new Error('mainWindow not exist')
   }
 })
 
-ipcMain.on('win:unmaximize', (event) => {
+ipcMain.on('win:unmaximize', event => {
   if (mainWindow) {
     mainWindow.unmaximize()
 
     let isMaximized = mainWindow.isMaximized()
-    event.sender.send('win:isMaximized', isMaximized)
+
+    event.returnValue = isMaximized
+  } else {
+    event.returnValue = new Error('mainWindow not exist')
   }
 })
 
-ipcMain.on('win:restore', () => {
+ipcMain.on('win:restore', event => {
   if (mainWindow) {
     mainWindow.restore()
+
+    event.returnValue = true
+  } else {
+    event.returnValue = new Error('mainWindow not exist')
   }
 })
 
-ipcMain.on('win:close', () => {
+ipcMain.on('win:close', event => {
   if (mainWindow) {
     mainWindow.close()
     mainWindow.destroy()
+
+    event.returnValue = true
+  } else {
+    event.returnValue = new Error('mainWindow not exist')
   }
 })

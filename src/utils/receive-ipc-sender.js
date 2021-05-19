@@ -2,10 +2,10 @@ import store from '@/store'
 import IpcBridge from './IpcBridge'
 
 IpcBridge.receive('fromMain', data => {
-  console.log(`Received ${data} from main process`)
+  console.log(`fromMain Received ${data} from main process`)
 })
 
 IpcBridge.receive('win:isMaximized', data => {
-  console.log(`Received ${data} from main process`)
+  console.log(`win:isMaximized Received ${data} from main process`)
   store.dispatch('settings/changeIsMaxWindow', data)
 })

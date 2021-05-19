@@ -56,17 +56,17 @@ export default {
     }
   },
   methods: {
-    minimize() {
-      IpcBridge.send('win:minimize')
+    async minimize() {
+      await IpcBridge.sendSync('win:minimize')
     },
-    maximize() {
-      IpcBridge.send('win:maximize')
+    async maximize() {
+      await IpcBridge.sendSync('win:maximize')
     },
-    unmaximize() {
-      IpcBridge.send('win:unmaximize')
+    async unmaximize() {
+      await IpcBridge.sendSync('win:unmaximize')
     },
-    close() {
-      IpcBridge.send('win:close')
+    async close() {
+      await IpcBridge.sendSync('win:close')
     }
   }
 }

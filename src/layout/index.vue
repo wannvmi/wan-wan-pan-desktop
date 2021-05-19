@@ -24,23 +24,19 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main>
-        <v-container fluid>
-          阿萨德
-          <div class="demos" />
-          <router-view :key="key" />
-        </v-container>
-      </v-main>
+      <app-main />
     </v-app>
   </div>
 </template>
 
 <script>
 import SystemBar from './components/SystemBar'
+import AppMain from './components/AppMain'
 
 export default {
   components: {
-    SystemBar
+    SystemBar,
+    AppMain
   },
   data: () => ({
     cards: ['Today', 'Yesterday'],
@@ -51,12 +47,7 @@ export default {
       ['mdi-delete', 'Trash'],
       ['mdi-alert-octagon', 'Spam']
     ]
-  }),
-  computed: {
-    key() {
-      return this.$route.path
-    }
-  }
+  })
 }
 </script>
 
@@ -65,11 +56,5 @@ export default {
   height: calc(100vh - 40px);
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-.demos {
-  border: 1px solid #3333;
-  width: 20px;
-  height: 3000px;
 }
 </style>

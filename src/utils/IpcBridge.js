@@ -1,13 +1,31 @@
 export default {
-  send(channel, data) {
+  send(channel, arg) {
     return new Promise((resolve, reject) => {
       if (window.ipcRenderer == null) {
         resolve('development')
       }
 
       try {
-        window.ipcRenderer.send(channel, data)
+        window.ipcRenderer.send(channel, arg)
+
         resolve()
+      } catch (error) {
+        console.error(error)
+        reject(error)
+      }
+    })
+  },
+
+  sendSync(channel, arg) {
+    return new Promise((resolve, reject) => {
+      if (window.ipcRenderer == null) {
+        resolve('development')
+      }
+
+      try {
+        let res = window.ipcRenderer.sendSync(channel, arg)
+
+        resolve(res)
       } catch (error) {
         console.error(error)
         reject(error)
