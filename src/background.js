@@ -1,8 +1,9 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+import path from 'path'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -10,44 +11,31 @@ protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
+let mainWindow
+
 async function createWindow() {
   // Create the browser window.
-  let win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     frame: false,
     width: 800,
     height: 600,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
+      contextIsolation: true,
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      preload: path.join(__dirname, 'preload.js')
     }
-  })
-
-  process.on('minimize', () => {
-    console.log('minimize')
-    win.minimize()
-  })
-  process.on('maximize', () => {
-    console.log('maximize')
-    win.maximize()
-  })
-  process.on('restore', () => {
-    console.log('restore')
-    win.restore()
-  })
-  process.on('close', () => {
-    console.log('close')
-    win.close()
   })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    if (!process.env.IS_TEST) win.webContents.openDevTools()
+    await mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    if (!process.env.IS_TEST) mainWindow.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    win.loadURL('app://./index.html')
+    mainWindow.loadURL('app://./index.html')
   }
 }
 
@@ -95,3 +83,51 @@ if (isDevelopment) {
     })
   }
 }
+
+// ipcMain.on('toMain', (event, data) => {
+//   // find other window to send the event to
+//   console.log('触发了')
+// })
+
+// ipcMain.on('toMain', (event, data) => {
+//   // find other window to send the event to
+//   console.log('触发了')
+//   event.sender.send('fromMain', data)
+// })
+
+ipcMain.on('win:minimize', () => {
+  if (mainWindow) {
+    mainWindow.minimize()
+  }
+})
+
+ipcMain.on('win:maximize', (event) => {
+  if (mainWindow) {
+    mainWindow.maximize()
+
+    let isMaximized = mainWindow.isMaximized()
+    event.sender.send('win:isMaximized', isMaximized)
+  }
+})
+
+ipcMain.on('win:unmaximize', (event) => {
+  if (mainWindow) {
+    mainWindow.unmaximize()
+
+    let isMaximized = mainWindow.isMaximized()
+    event.sender.send('win:isMaximized', isMaximized)
+  }
+})
+
+ipcMain.on('win:restore', () => {
+  if (mainWindow) {
+    mainWindow.restore()
+  }
+})
+
+ipcMain.on('win:close', () => {
+  if (mainWindow) {
+    mainWindow.close()
+    mainWindow.destroy()
+  }
+})

@@ -50,7 +50,20 @@ module.exports = {
   },
   pluginOptions: {
     electronBuilder: {
-      nodeIntegration: true
+      preload: 'src/preload.js',
+      nodeIntegration: false
+      // builderOptions: {
+      //   // options placed here will be merged with default configuration and passed to electron-builder
+      //   // Windows 平台打包配置
+      //   // https://www.electron.build/configuration/nsis
+      //   win: {
+      //     target: 'nsis' // 打包方式
+      //   },
+      //   nsis: {
+      //     oneClick: false, // 禁用一键安装
+      //     allowToChangeInstallationDirectory: true
+      //   }
+      // },
     }
   }
 }

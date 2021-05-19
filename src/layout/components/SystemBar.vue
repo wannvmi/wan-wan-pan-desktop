@@ -16,7 +16,7 @@
     </div>
     <div
       class="system-bar-icon"
-      v-if="!isMax"
+      v-if="!isMaxWindow"
       @click="maximize"
     >
       <v-icon :size="18">
@@ -26,7 +26,7 @@
     <div
       class="system-bar-icon"
       v-else
-      @click="restore"
+      @click="unmaximize"
     >
       <v-icon :size="18">
         mdi-checkbox-multiple-blank-outline
@@ -44,24 +44,29 @@
 </template>
 
 <script>
+import JsBridge from '@/utils/JsBridge'
+
 export default {
   data() {
-    return {
-      isMax: true
+    return {}
+  },
+  computed: {
+    isMaxWindow() {
+      return this.$store.getters.isMaxWindow
     }
   },
   methods: {
     minimize() {
-      process.minimize()
+      JsBridge.ipcRendererSend('win:minimize')
     },
     maximize() {
-      process.maximize()
+      JsBridge.ipcRendererSend('win:maximize')
     },
-    restore() {
-      process.restore()
+    unmaximize() {
+      JsBridge.ipcRendererSend('win:unmaximize')
     },
     close() {
-      process.close()
+      JsBridge.ipcRendererSend('win:close')
     }
   }
 }

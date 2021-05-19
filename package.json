@@ -1,10 +1,11 @@
 {
   "name": "wan-wan-pan-desktop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:production": "vue-cli-service build --mode production --report",
+    "build:staging": "vue-cli-service build --mode staging --report",
     "electron:serve": "vue-cli-service electron:serve",
     "electron:build": "vue-cli-service electron:build",
     "lint": "vue-cli-service lint",

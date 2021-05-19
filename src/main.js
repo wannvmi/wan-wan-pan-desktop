@@ -9,6 +9,8 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 
 import './utils/error-log' // error log
+import './utils/ReceiveIpcSender'
+
 
 Vue.config.productionTip = false
 
