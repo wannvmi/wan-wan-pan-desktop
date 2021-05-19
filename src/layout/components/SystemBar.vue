@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import JsBridge from '@/utils/JsBridge'
+import IpcBridge from '@/utils/IpcBridge'
 
 export default {
   data() {
@@ -57,16 +57,16 @@ export default {
   },
   methods: {
     minimize() {
-      JsBridge.ipcRendererSend('win:minimize')
+      IpcBridge.send('win:minimize')
     },
     maximize() {
-      JsBridge.ipcRendererSend('win:maximize')
+      IpcBridge.send('win:maximize')
     },
     unmaximize() {
-      JsBridge.ipcRendererSend('win:unmaximize')
+      IpcBridge.send('win:unmaximize')
     },
     close() {
-      JsBridge.ipcRendererSend('win:close')
+      IpcBridge.send('win:close')
     }
   }
 }
