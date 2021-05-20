@@ -1,30 +1,11 @@
 <template>
   <div>
     <v-app id="inspire">
-      <system-bar />
-      <v-navigation-drawer
+      <!-- <system-bar /> -->
+      <navigation-drawer
         permanent
         app
-      >
-        <div>
-          list
-        </div>
-        <!-- <v-list>
-          <v-list-item
-            v-for="[icon, text] in links"
-            :key="icon"
-            link
-          >
-            <v-list-item-icon>
-              <v-icon>{{ icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list> -->
-      </v-navigation-drawer>
+      />
 
       <app-main />
     </v-app>
@@ -32,18 +13,25 @@
 </template>
 
 <script>
-import SystemBar from './components/SystemBar'
+// import SystemBar from './components/SystemBar'
+import NavigationDrawer from './components/NavigationDrawer/index'
 import AppMain from './components/AppMain'
 
 export default {
   components: {
-    SystemBar,
+    // SystemBar,
+    NavigationDrawer,
     AppMain
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.v-application {
+  min-width: 1080px;
+  min-height: 770px;
+}
+
 .v-main {
   height: calc(100vh - 40px);
   overflow-x: hidden;

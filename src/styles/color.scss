@@ -1,0 +1,191 @@
+/* Colors for ADS */
+/* stylelint-disable selector-max-id */
+
+@mixin light-colors {
+  /* basic */
+  --basic_white: #fff;
+  --basic_white_secondary: rgba(255,255,255,0.72);
+  --basic_white_tertiary: rgba(255,255,255,0.36);
+  --basic_white_quarternary: rgba(255,255,255,0.18);
+  --basic_black: #000;
+  --basic_elevated: #313136;
+  --basic_elevated_blur: rgba(49, 49, 54, 0.76);
+  /* Background */
+  --background_primary-op: rgba(255,255,255,0);
+  --background_primary: #fff;
+  --background_secondary: #f5f5f6;
+  --background_tertiary: #fff;
+  /* Background blur */
+  --background_primary_blur: rgb(255, 255, 255);
+  --background_secondary_blur: rgb(245, 245, 246);
+  --background_tertiary_blur: rgb(255, 255, 255);
+  /* Background blur 搭配 backdrop-filter（支持回退） */
+  --bg-blur: saturate(150%) blur(30px);
+  /* Group */
+  --group_primary: var(--background_secondary);
+  --group_secondary: var(--background_primary);
+  --group_tertiary: var(--background_secondary);
+  /* Context */
+  --context: 37, 38, 43;
+  --context_primary: rgb(var(--context));
+  --context_secondary: rgba(var(--context), 0.72);
+  --context_tertiary: rgba(var(--context), 0.36);
+  --context_quarternary: rgba(var(--context), 0.18);
+  /* Divider & Overlay */
+  --divider: 132, 133, 141;
+  --divider_primary: rgba(var(--divider), 0.2);
+  --divider_secondary: rgba(var(--divider), 0.16);
+  --divider_tertiary: rgba(var(--divider), 0.08);
+  --divider_overlay: rgba(0, 0, 0, 0.24);
+  /* Theme */
+  --theme: 99, 125, 255;
+  --theme_primary: rgb(var(--theme));
+  --theme_secondary: rgba(var(--theme), 0.48);
+  --theme_tertiary: rgba(var(--theme), 0.24);
+  --theme_quarternary: rgba(var(--theme), 0.12);
+  --theme_hover: rgb(122, 144, 255);
+  --theme_active: rgb(82, 110, 250);
+  /* Red(Error and Danger) */
+  --red: 243, 91, 81;
+  --red_primary: rgb(var(--red));
+  --red_secondary: rgba(var(--red), 0.48);
+  --red_tertiary: rgba(var(--red), 0.24);
+  --red_quarternary: rgba(var(--red), 0.12);
+  --red_hover: rgb(255, 111, 102);
+  --red_active: rgb(237, 80, 69);
+  /* Orange(Warning) */
+  --orange: 255, 163, 26;
+  --orange_primary: rgb(var(--orange));
+  --orange_secondary: rgba(var(--orange), 0.48);
+  --orange_tertiary: rgba(var(--orange), 0.24);
+  --orange_quarternary: rgba(var(--orange), 0.12);
+  /* Yellow */
+  --yellow: 254, 208, 38;
+  --yellow_primary: rgb(var(--yellow));
+  --yellow_secondary: rgba(var(--yellow), 0.48);
+  --yellow_tertiary: rgba(var(--yellow), 0.24);
+  --yellow_quarternary: rgba(var(--yellow), 0.12);
+  /* Green */
+  --green: 19, 203, 54;
+  --green_primary: rgb(var(--green));
+  --green_secondary: rgba(var(--green), 0.48);
+  --green_tertiary: rgba(var(--green), 0.24);
+  --green_quarternary: rgba(var(--green), 0.12);
+  /* Sea Green */
+  --seagreen: 9, 153, 112;
+  --seagreen_primary: rgb(var(--seagreen));
+  --seagreen_secondary: rgba(var(--seagreen), 0.48);
+  --seagreen_tertiary: rgba(var(--seagreen), 0.24);
+  --seagreen_quarternary: rgba(var(--seagreen), 0.12);
+  /* Teal */
+  --teal: 31, 203, 247;
+  --teal_primary: rgb(var(--teal));
+  --teal_secondary: rgba(var(--teal), 0.48);
+  --teal_tertiary: rgba(var(--teal), 0.24);
+  --teal_quarternary: rgba(var(--teal), 0.12);
+  /* Blue */
+  --blue: 38, 125, 255;
+  --blue_primary: rgb(var(--blue));
+  --blue_secondary: rgba(var(--blue), 0.48);
+  --blue_tertiary: rgba(var(--blue), 0.24);
+  --blue_quarternary: rgba(var(--blue), 0.12);
+  /* Indigo */
+  --indigo: 140, 90, 248;
+  --indigo_primary: rgb(var(--indigo));
+  --indigo_secondary: rgba(var(--indigo), 0.48);
+  --indigo_tertiary: rgba(var(--indigo), 0.24);
+  --indigo_quarternary: rgba(var(--indigo), 0.12);
+  /* Shadow */
+  --shadow_border: 0px 0px 0px 1px rgba(28, 28, 32, 0.08);
+  --shadow_img: 0px 1px 4px rgba(28, 28, 32, 0.12);
+  --shadow_control: 0px 3px 8px rgba(28, 28, 32, 0.12), 0px 3px 5px rgba(28, 28, 32, 0.04);
+  --shadow_card: 0px 1px 4px rgba(28, 28, 32, 0.04), 0px 8px 24px rgba(28, 28, 32, 0.12);
+  --shadow_boldcard: 0px 2px 8px rgba(28, 28, 32, 0.06), 0px 16px 48px rgba(28, 28, 32, 0.2);
+  /* gradient */
+  --red_gradient: linear-gradient(135deg, var(--orange_primary) 0%, var(--red_primary) 100%);
+  --yellow_gradient: linear-gradient(135deg, var(--orange_primary) 0%, var(--yellow_primary) 100%);
+  --green_gradient: linear-gradient(135deg, var(--teal_primary) 0%, var(--green_primary) 100%);
+  --blue_gradient: linear-gradient(135deg, var(--teal_primary) 0%, var(--blue_primary) 100%);
+  --purple_gradient: linear-gradient(135deg, var(--indigo_primary) 0%, var(--theme_primary) 100%);
+
+  @supports (backdrop-filter: none) {
+    :root {
+      --background_primary_blur: rgba(255, 255, 255, 0.92);
+      --background_secondary_blur: rgba(245, 245, 246, 0.76);
+      --background_tertiary_blur: rgba(255, 255, 255, 0.88);
+    }
+  }
+}
+
+@mixin dark-colors {
+  /* Background */
+  --background_primary-op: rgba(28, 28, 32,0);
+  --background_primary: #1c1c20;
+  --background_secondary: #37373c;
+  --background_tertiary: #424247;
+  /* Background blur */
+  --background_primary_blur: rgb(28, 28, 32);
+  --background_secondary_blur: rgb(55, 55, 60);
+  --background_tertiary_blur: rgb(66, 66, 71);
+  /* Group */
+  --group_primary: var(--background_primary);
+  --group_secondary: var(--background_secondary);
+  --group_tertiary: var(--background_tertiary);
+  /* Context */
+  --context: 255, 255, 255;
+  --context_primary: rgb(var(--context));
+  --context_secondary: rgba(var(--context), 0.72);
+  --context_tertiary: rgba(var(--context), 0.36);
+  --context_quarternary: rgba(var(--context), 0.18);
+  /* Divider & Overlay */
+  --divider_primary: rgba(var(--divider), 0.36);
+  --divider_secondary: rgba(var(--divider), 0.24);
+  --divider_tertiary: rgba(var(--divider), 0.12);
+  --divider_overlay: rgba(136, 136, 136, 0.24);
+  /* Theme */
+  --theme: 112, 136, 255;
+  --theme_hover: rgb(138, 157, 255);
+  --theme_active: rgb(97, 122, 250);
+  /* Red(Error and Danger) */
+  --red: 239, 103, 94;
+  --red_hover: rgb(255, 126, 117);
+  --red_active: rgb(234, 92, 83);
+  /* Orange(Warning) */
+  --orange: 254, 176, 59;
+  /* Yellow */
+  --yellow: 248, 214, 45;
+  /* Green */
+  --green: 39, 205, 71;
+  /* Sea Green */
+  --seagreen: 22, 157, 118;
+  /* Teal */
+  --teal: 49, 209, 245;
+  /* Blue */
+  --blue: 31, 145, 246;
+  /* Indigo */
+  --indigo: 147, 101, 245;
+
+  @supports (backdrop-filter: none) {
+    --background_primary_blur: rgba(28, 28, 32, 0.88);
+    --background_secondary_blur: rgba(55, 55, 60, 0.76);
+    --background_tertiary_blur: rgba(66, 66, 71, 0.88);
+  }
+}
+
+:root {
+  @include light-colors;
+}
+
+[data-theme='light'] {
+  @include light-colors;
+}
+
+[data-theme='dark'] {
+  @include dark-colors;
+}
+
+[data-theme='system'] {
+  @media (prefers-color-scheme: dark) {
+    @include dark-colors;
+  }
+}
