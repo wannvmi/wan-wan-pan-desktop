@@ -10,12 +10,42 @@ const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/home',
+    redirect: '/file-management',
     children: [
       {
-        path: 'home',
-        name: 'home',
-        component: () => import('@/views/Home')
+        path: 'file-management',
+        name: 'FileManagement',
+        component: () => import('@/views/file-management')
+      },
+      {
+        path: 'photo-album',
+        name: 'PhotoAlbum',
+        component: () => import('@/views/photo-album')
+      },
+      {
+        path: 'favorites',
+        name: 'Favorites',
+        component: () => import('@/views/favorites')
+      },
+      {
+        path: 'safe',
+        name: 'Safe',
+        component: () => import('@/views/safe')
+      },
+      {
+        path: 'recycle-bin',
+        name: 'RecycleBin',
+        component: () => import('@/views/recycle-bin')
+      },
+      {
+        path: 'transmission-list',
+        name: 'TransmissionList',
+        component: () => import('@/views/transmission-list')
+      },
+      {
+        path: 'setting',
+        name: 'Setting',
+        component: () => import('@/views/setting')
       }
     ]
   },

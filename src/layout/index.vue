@@ -14,7 +14,7 @@
 
 <script>
 // import SystemBar from './components/SystemBar'
-import NavigationDrawer from './components/NavigationDrawer/index'
+import NavigationDrawer from './components/NavigationDrawer'
 import AppMain from './components/AppMain'
 
 export default {
