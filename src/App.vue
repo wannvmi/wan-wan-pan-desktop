@@ -23,6 +23,8 @@ export default {
   methods: {
     setTheme() {
       document.querySelector('body').setAttribute('data-theme', this.theme)
+      // document.querySelector('body').setAttribute('data-theme', 'dark')
+      // this.$vuetify.theme.dark = true
     }
   }
 }

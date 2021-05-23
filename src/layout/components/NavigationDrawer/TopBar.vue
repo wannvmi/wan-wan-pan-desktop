@@ -1,17 +1,23 @@
 <template>
   <div class="top-bar-wrapper">
-    <div class="top-bar-icon">
+    <div
+      class="top-bar-icon"
+      @click="goBack"
+    >
       <v-icon
         size="16"
-        color="#666666"
+        color="var(--context_secondary)"
       >
         mdi-chevron-left
       </v-icon>
     </div>
-    <div class="top-bar-icon">
+    <div
+      class="top-bar-icon"
+      @click="goTo"
+    >
       <v-icon
         size="16"
-        color="#666666"
+        color="var(--context_secondary)"
       >
         mdi-chevron-right
       </v-icon>
@@ -20,7 +26,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+    goTo() {
+      window.history.length > 1 ? this.$router.go(1) : this.$router.push('/')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

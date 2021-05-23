@@ -19,7 +19,7 @@
         <div class="nav-menu-item-icon">
           <v-icon
             size="24"
-            color="#666666"
+            color="var(--context_secondary)"
           >
             {{ item.icon }}
           </v-icon>
@@ -27,67 +27,24 @@
         <span>{{ item.title }}</span>
       </router-link>
 
+      <div class="nav-divider">
+        <v-divider />
+      </div>
       <router-link
         class="nav-menu-item"
-        :to="{ name: 'PhotoAlbum' }"
+        :to="{ name: 'TransmissionList' }"
       >
         <div class="nav-menu-item-icon">
           <v-icon
             size="24"
-            color="#666666"
-          >
-            mdi-file-image-outline
-          </v-icon>
-        </div>
-        <span>相册</span>
-      </router-link>
-      <li class="nav-menu-item">
-        <div class="nav-menu-item-icon">
-          <v-icon
-            size="24"
-            color="#666666"
-          >
-            mdi-star-outline
-          </v-icon>
-        </div>
-        <span>收藏夹</span>
-      </li>
-      <li class="nav-menu-item">
-        <div class="nav-menu-item-icon">
-          <v-icon
-            size="24"
-            color="#666666"
-          >
-            mdi-lock-outline
-          </v-icon>
-        </div>
-        <span>保险箱</span>
-      </li>
-      <li class="nav-menu-item">
-        <div class="nav-menu-item-icon">
-          <v-icon
-            size="24"
-            color="#666666"
-          >
-            mdi-trash-can-outline
-          </v-icon>
-        </div>
-        <span>垃圾桶</span>
-      </li>
-
-      <li class="nav-menu-item">
-        <div class="nav-menu-item-icon">
-          <v-icon
-            size="24"
-            color="#666666"
+            color="var(--context_secondary)"
           >
             mdi-file-swap-outline
           </v-icon>
         </div>
         <span>传输列表</span>
-      </li>
+      </router-link>
     </div>
-    <v-divider />
   </div>
 </template>
 
@@ -102,24 +59,24 @@ export default {
           icon: 'mdi-file-outline'
         },
         {
-          name: 'FileManagement',
+          name: 'PhotoAlbum',
           title: '相册',
           icon: 'mdi-file-image-outline'
         },
         {
-          name: 'FileManagement',
-          title: '文件',
-          icon: 'mdi-file-outline'
+          name: 'Favorites',
+          title: '收藏夹',
+          icon: 'mdi-star-outline'
         },
         {
-          name: 'FileManagement',
-          title: '文件',
-          icon: 'mdi-file-outline'
+          name: 'Safe',
+          title: '保险箱',
+          icon: ' mdi-lock-outline'
         },
         {
-          name: 'FileManagement',
-          title: '文件',
-          icon: 'mdi-file-outline'
+          name: 'RecycleBin',
+          title: '垃圾桶',
+          icon: 'mdi-trash-can-outline'
         }
       ]
     }
@@ -156,6 +113,7 @@ export default {
     }
 
     span {
+      color: var(--context_primary);
       padding-left: 9px;
       display: block;
       height: 19px;
@@ -196,7 +154,18 @@ export default {
       &:hover {
         @extend .is-active;
       }
+
+      .nav-menu-item-icon {
+        width: 24px;
+        margin-right: 16px;
+      }
     }
+  }
+
+  .nav-divider {
+    width: 216px;
+    padding-left: 12px;
+    padding: 12px 0;
   }
 }
 </style>
