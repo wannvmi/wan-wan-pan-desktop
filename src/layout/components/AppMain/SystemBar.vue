@@ -1,16 +1,13 @@
 <template>
-  <v-system-bar
-    height="40"
-    window
-    app
-  >
-    <span>wan wan pan</span>
-    <v-spacer />
+  <div class="system-bar">
     <div
       class="system-bar-icon"
       @click="minimize"
     >
-      <v-icon :size="20">
+      <v-icon
+        :size="20"
+        color="var(--context_secondary)"
+      >
         mdi-minus
       </v-icon>
     </div>
@@ -19,7 +16,10 @@
       v-if="!isMaxWindow"
       @click="maximize"
     >
-      <v-icon :size="18">
+      <v-icon
+        :size="18"
+        color="var(--context_secondary)"
+      >
         mdi-checkbox-blank-outline
       </v-icon>
     </div>
@@ -28,7 +28,10 @@
       v-else
       @click="unmaximize"
     >
-      <v-icon :size="18">
+      <v-icon
+        :size="18"
+        color="var(--context_secondary)"
+      >
         mdi-checkbox-multiple-blank-outline
       </v-icon>
     </div>
@@ -36,11 +39,14 @@
       class="system-bar-icon system-bar-close"
       @click="close"
     >
-      <v-icon :size="20">
+      <v-icon
+        :size="20"
+        color="var(--context_secondary)"
+      >
         mdi-close
       </v-icon>
     </div>
-  </v-system-bar>
+  </div>
 </template>
 
 <script>
@@ -73,20 +79,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-system-bar {
+.system-bar {
   padding: 0;
+  width: 100%;
+  height: 40px;
   -webkit-app-region: drag;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .system-bar-icon {
-  width: 40px;
+  width: 75px;
   height: 40px;
   -webkit-app-region: no-drag;
 
   @extend %flex-center-col;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: var(--divider_tertiary);
   }
 
   .v-icon {
@@ -95,7 +108,12 @@ export default {
 
   &.system-bar-close {
     &:hover {
-      background-color: rgba(255, 0, 0, 0.7);
+      background-color: var(--red_hover);
+
+      .v-icon {
+        color: var(--basic_white) !important;
+        caret-color: var(--basic_white) !important;
+      }
     }
   }
 }
