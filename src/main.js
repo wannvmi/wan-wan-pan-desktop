@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+import 'modern-normalize/modern-normalize.css';
 import '@/styles/index.scss' // global css
 
 import App from './App.vue'
