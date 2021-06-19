@@ -7,7 +7,7 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ['plugin:vue/strongly-recommended', 'eslint:recommended'],
+  extends: ['plugin:vue/recommended', 'eslint:recommended'],
 
   rules: {
     // override/add rules settings here, such as:

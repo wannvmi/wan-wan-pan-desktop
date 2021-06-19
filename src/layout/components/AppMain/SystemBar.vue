@@ -12,8 +12,8 @@
       </v-icon>
     </div>
     <div
-      class="system-bar-icon"
       v-if="!isMaxWindow"
+      class="system-bar-icon"
       @click="maximize"
     >
       <v-icon
@@ -24,8 +24,8 @@
       </v-icon>
     </div>
     <div
-      class="system-bar-icon"
       v-else
+      class="system-bar-icon"
       @click="unmaximize"
     >
       <v-icon

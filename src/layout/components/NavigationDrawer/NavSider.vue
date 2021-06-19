@@ -11,9 +11,9 @@
 
     <div class="nav-menu">
       <router-link
-        class="nav-menu-item"
         v-for="(item, key) in menuList"
         :key="key"
+        class="nav-menu-item"
         :to="{ name: item.name }"
       >
         <div class="nav-menu-item-icon">
