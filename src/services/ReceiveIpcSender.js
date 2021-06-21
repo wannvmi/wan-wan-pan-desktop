@@ -1,5 +1,5 @@
 import store from '@/store'
-import IpcBridge from './IpcBridge'
+import IpcBridge from '../utils/IpcBridge'
 
 IpcBridge.receive('fromMain', data => {
   console.log(`fromMain Received ${data} from main process`)

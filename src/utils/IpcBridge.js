@@ -1,8 +1,10 @@
 export default {
   send(channel, arg) {
     return new Promise((resolve, reject) => {
-      if (window.ipcRenderer == null) {
+      if (typeof window.ipcRenderer == 'undefined') {
+        console.log('IpcBridge.send channel', arg)
         resolve('development')
+        return
       }
 
       try {
@@ -18,8 +20,11 @@ export default {
 
   sendSync(channel, arg) {
     return new Promise((resolve, reject) => {
-      if (window.ipcRenderer == null) {
+      if (typeof window.ipcRenderer == 'undefined') {
+        console.log('IpcBridge.sendSync channel', arg)
+
         resolve('development')
+        return
       }
 
       try {
@@ -35,8 +40,11 @@ export default {
 
   receive(channel, func) {
     return new Promise((resolve, reject) => {
-      if (window.ipcRenderer == null) {
+      if (typeof window.ipcRenderer == 'undefined') {
+        console.log('IpcBridge.receive channel', func)
+
         resolve('development')
+        return
       }
 
       try {

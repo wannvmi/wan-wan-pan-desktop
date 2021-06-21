@@ -111,7 +111,7 @@ ipcMain.on('win:minimize', event => {
   if (mainWindow) {
     mainWindow.minimize()
 
-    event.returnValue = new Error('mainWindow not exist')
+    event.returnValue = true
   } else {
     event.returnValue = new Error('mainWindow not exist')
   }

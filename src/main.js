@@ -10,7 +10,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 
 import './utils/error-log' // error log
-import './utils/receive-ipc-sender'
+import './services/ReceiveIpcSender' // receive ipc-sender
 
 
 Vue.config.productionTip = false
