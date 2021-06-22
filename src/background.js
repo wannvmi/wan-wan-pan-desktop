@@ -4,6 +4,7 @@ import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 import path from 'path'
+import ObjectStorageClient from './services/object-storage/ObjectStorageClient'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -38,12 +39,12 @@ async function createWindow() {
     mainWindow.loadURL('app://./index.html')
   }
 
-  mainWindow.on('maximize', (event) => {
+  mainWindow.on('maximize', event => {
     let isMaximized = mainWindow.isMaximized()
     event.sender.send('win:isMaximized', isMaximized)
   })
 
-  mainWindow.on('unmaximize', (event) => {
+  mainWindow.on('unmaximize', event => {
     let isMaximized = mainWindow.isMaximized()
     event.sender.send('win:isMaximized', isMaximized)
   })
@@ -107,6 +108,8 @@ if (isDevelopment) {
 // })
 
 // https://www.electronjs.org/docs/api/ipc-main
+
+// 窗口操作
 ipcMain.on('win:minimize', event => {
   if (mainWindow) {
     mainWindow.minimize()
@@ -160,4 +163,22 @@ ipcMain.on('win:close', event => {
   } else {
     event.returnValue = new Error('mainWindow not exist')
   }
+})
+
+// object-storage 对象存储服务
+let objectStorageClient = new ObjectStorageClient()
+
+ipcMain.on('oss:getService', event => {
+  event.returnValue = objectStorageClient.getService()
+})
+
+ipcMain.on('oss:changeContext', (event, arg) => {
+  let { OssType, accessKey, secretKey, bucket } = arg
+  objectStorageClient.changeContext({ OssType, accessKey, secretKey, bucket })
+  event.returnValue = true
+})
+
+ipcMain.on('oss:clearContext', event => {
+  objectStorageClient.clearContext()
+  event.returnValue = true
 })
