@@ -1,6 +1,11 @@
-export default {
-  createAliOss() {
+import AliOss from './AliOss'
 
+export default {
+
+  /**
+   * @returns AliOss
+   */
+  createAliOss() {
   }
 }
 
